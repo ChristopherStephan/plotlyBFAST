@@ -3,7 +3,7 @@ library(zoo)
 library(plotly)
 
 time2num <- function(x) if(length(x) > 1L) x[1L] + (x[2L] - 1)/freq else x
-num2time <- function(bfm) sprintf("Break detected at: %i(%i)", floor(bfm$breakpoint), round((bfm$breakpoint - floor(bfm$breakpoint)) * frequency(bfm$data)))
+num2time <- function(bfm) sprintf("Break detected at: %i(%i)", floor(bfm$breakpoint), round((bfm$breakpoint - floor(bfm$breakpoint)) * frequency(bfm$data)) + 1)
 
 plotlyBfm <- function(bfm) {
   data = bfm$data
