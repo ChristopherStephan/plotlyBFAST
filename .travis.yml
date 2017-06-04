@@ -5,6 +5,9 @@ sudo: false
 cache: packages
 latex: false
 
+before_install:
+  - cd plotlyBFAST
+
 r_github_packages:
   - jimhester/covr
 
