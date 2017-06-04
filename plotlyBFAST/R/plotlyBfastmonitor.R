@@ -1,18 +1,25 @@
 #' Converts a numeric time to year-cycle representation
 #'
 #' @description
-#' Converts a numeric time to year-cycle representation, i.e. 2011(3)
+#' Converts a numeric time to year-cycle representation. Taken from plot.bfastmonitor.
 
 #' @param bfm a bfastmonitor object.
 #'
 #' @examples
 #' require(bfast)
+#' require(plotlyBFAST)
 #' NDVIa <- as.ts(zoo(som$NDVI.a, som$Time))
 #' mona <- bfastmonitor(NDVIa, start = c(2010, 13))
 #' num2time(mona)
 #'
 #' @export
-num2time <- function(bfm) sprintf("Break detected at: %i(%i)", floor(bfm$breakpoint), round((bfm$breakpoint - floor(bfm$breakpoint)) * frequency(bfm$data)) + 1)
+num2time <- function(bfm){
+  if(is.na(bfm$breakpoint))
+    "No break detected"
+   else
+    sprintf("Break detected at: %i(%i)", floor(bfm$breakpoint), round((bfm$breakpoint - floor(bfm$breakpoint)) * frequency(bfm$data)) + 1)
+}
+
 
 #' Converts the plot.bfastmonitor function to a plotly graph
 #'
