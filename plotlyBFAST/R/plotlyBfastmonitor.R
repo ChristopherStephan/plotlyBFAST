@@ -2,22 +2,53 @@ library(bfast)
 library(zoo)
 library(plotly)
 
-time2num <- function(x) if(length(x) > 1L) x[1L] + (x[2L] - 1)/freq else x
+#' Converts a numeric time to year-cycle representation
+#'
+#' @description
+#' Converts a numeric time to year-cycle representation, i.e. 2011(3)
+
+#' @param bfm a bfastmonitor object.
+#'
+#' @examples
+#' require(bfast)
+#' NDVIa <- as.ts(zoo(som$NDVI.a, som$Time))
+#' mona <- bfastmonitor(NDVIa, start = c(2010, 13))
+#' num2time(mona)
+#'
+#' @export
 num2time <- function(bfm) sprintf("Break detected at: %i(%i)", floor(bfm$breakpoint), round((bfm$breakpoint - floor(bfm$breakpoint)) * frequency(bfm$data)) + 1)
 
+#' Converts the plot.bfastmonitor function to a plotly graph
+#'
+#' @description
+#' Converts the plot.bfastmonitor function to a plotly graph
+#'
+#' @import bfast
+#' @import zoo
+#' @import plotly
+#'
+#' @param bfm a bfastmonitor object.
+#'
+#' @examples
+#' require(bfast)
+#' NDVIa <- as.ts(zoo(som$NDVI.a, som$Time))
+#' mona <- bfastmonitor(NDVIa, start = c(2010, 13))
+#' plotlyBfm(mona)
+#'
+#' @export
 plotlyBfm <- function(bfm) {
   data = bfm$data
   time = bfm$tspp$time
   test_pred = predict(bfm$model, newdata = bfm$tspp)
   test_pred = zoo(test_pred, bfm$tspp$time, frequency = frequency(data))
 
-  data = data[!is.na(data)]  
+  data = data[!is.na(data)]
   df = data.frame(time, data, test_pred)
   df = cbind(rownames(df), df)
   rownames(df) <- NULL
   colnames(df) <- c("yearCycle", "numTime", "ddata", "test_pred")
-  
-  plot = plot_ly(df, x=~numTime, y=~ddata, name='data', type='scatter', mode='lines+markers', text=df$yearCycle, hoverinfo="x+y+text+name") %>% 
+
+  plot = plot_ly(df, x=~numTime, y=~ddata, name='data', type='scatter', mode='lines+markers', text=df$yearCycle, hoverinfo="x+y+text+name") %>%
     add_trace(x=df$numTime, y=df$test_pred, name='model', line=list(color = "orange"), mode='lines') %>%
     add_trace(x=bfm$history[1], y=c(min(df$ddata), rep(min(df$ddata), (length(df$ddata)-2)), max(df$ddata)), line=list(color = "gray"), name='start of stable history', mode="lines") %>%
     add_trace(x=bfm$monitor[1], y=c(min(df$ddata), rep(min(df$ddata), (length(df$ddata)-2)), max(df$ddata)), line=list(color = "green"), name='start monitoring period', mode="lines") %>%

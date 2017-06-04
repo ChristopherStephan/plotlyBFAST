@@ -1,9 +1,16 @@
 Package: plotlyBFAST
-Title: What the Package Does (one line, title case)
+Title: Plotting BFAST with plotly 
 Version: 0.0.0.9000
-Authors@R: person("First", "Last", email = "first.last@example.com", role = c("aut", "cre"))
+Authors@R: person("Christopher", "Stephan", email = "c.stephan@wwu.de", role = c("aut", "cre"))
+Author: Christopher Stephan [aut, cre]
+Maintainer: Christopher Stephan <c.stephan@wwu.de>
 Description: What the package does (one paragraph).
 Depends: R (>= 3.3.2)
-License: What license is it under?
+License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports:
+   bfast,
+   zoo,
+   plotly
+   
