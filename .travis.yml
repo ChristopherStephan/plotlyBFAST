@@ -3,9 +3,7 @@
 language: r
 sudo: false
 cache: packages
-
-before_install:
-  - tlmgr install index
+latex: false
 
 r_github_packages:
   - jimhester/covr
