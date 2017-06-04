@@ -1,7 +1,3 @@
-library(bfast)
-library(zoo)
-library(plotly)
-
 #' Converts a numeric time to year-cycle representation
 #'
 #' @description
