@@ -14,7 +14,7 @@ Converts the plot.bfastmonitor function to a plotly graph
 }
 \examples{
 require(bfast)
-require(plotlyBFAST)
+require(zoo)
 NDVIa <- as.ts(zoo(som$NDVI.a, som$Time))
 mona <- bfastmonitor(NDVIa, start = c(2010, 13))
 plotlyBfm(mona)

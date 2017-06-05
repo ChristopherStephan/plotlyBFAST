@@ -7,7 +7,7 @@
 #'
 #' @examples
 #' require(bfast)
-#' require(plotlyBFAST)
+#' require(zoo)
 #' NDVIa <- as.ts(zoo(som$NDVI.a, som$Time))
 #' mona <- bfastmonitor(NDVIa, start = c(2010, 13))
 #' num2time(mona)
@@ -34,6 +34,7 @@ num2time <- function(bfm){
 #'
 #' @examples
 #' require(bfast)
+#' require(zoo)
 #' NDVIa <- as.ts(zoo(som$NDVI.a, som$Time))
 #' mona <- bfastmonitor(NDVIa, start = c(2010, 13))
 #' plotlyBfm(mona)
