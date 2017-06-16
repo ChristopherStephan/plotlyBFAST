@@ -1,10 +1,10 @@
 Package: plotlyBFAST
-Title: Plotting BFAST with plotly 
+Title: Plotting BFAST Monitor with plotly 
 Version: 0.0.0.9000
 Authors@R: person("Christopher", "Stephan", email = "c.stephan@wwu.de", role = c("aut", "cre"))
 Author: Christopher Stephan [aut, cre]
 Maintainer: Christopher Stephan <c.stephan@wwu.de>
-Description: What the package does (one paragraph).
+Description: Plotting BFAST Monitor with plotly.
 Depends: R (>= 3.3.2)
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
